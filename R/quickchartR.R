@@ -7,7 +7,29 @@
 #   Test Package:              'Ctrl + Shift + T'
 
 require(rjson)
-quickchartR <- function(chartType, data) {
+
+TYPES = list(
+  "bar",
+  "line",
+  "radar",
+  "pie",
+  "doughnut",
+  "scatter",
+  "bubble",
+  "radialGauge",
+  "sparkline",
+  ""
+)
+
+checkType = function(type) {
+  if (!(type %in% TYPES)) {
+    stop(paste0("Incorrect chart type. Types: ", paste(TYPES, collapse = ', ')))
+  }
+}
+
+quickchartR <- function(type, data) {
+  checkType(type)
+
   MAIN_LINK = "https://quickchart.io/chart?c="
 
   json <- list(type = type,
