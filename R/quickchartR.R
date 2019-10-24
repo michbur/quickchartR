@@ -14,6 +14,7 @@
 #   Test Package:              'Ctrl + Shift + T'
 
 require(rjson)
+require(rlist)
 
 TYPES = list(
   "bar",
@@ -33,14 +34,30 @@ checkType = function(type) {
   }
 }
 
-quickchartR <- function(type, data) {
+#'
+#' @export
+quickchartR <- function(type, inputData) {
   checkType(type)
 
-  MAIN_LINK = "https://quickchart.io/chart?c222222222222222222222="
+  MAIN_LINK = "https://quickchart.io/chart?c="
+
+  labels = as.character(unique(inputData$label))
+
+  # categories == values of x
+  categories = unique(inputData$x)
+
+  datasets = list()
+
+  for (label in labels) {
+    datasets = list.append(datasets, list(label = label, data =
+                                            as.list(inputData[inputData$label == label, ]$y)))
+  }
+
+  data = list(labels = categories, datasets = datasets)
 
   json <- list(type = type,
                data = data)
   json = toJSON(json)
 
-  cat(MAIN_LINK, json)
+  paste0(MAIN_LINK, json)
 }
