@@ -1,3 +1,5 @@
+require(quickchartR)
+
 type = "bar"
 inputData = data.frame(x = rep(1:3, 2),
                        y = 2 * 1:6,
@@ -14,28 +16,3 @@ options = list(
 
 
 browseURL(quickchartR(type, inputData, colors, options))
-
-options:{
-  title:{
-    display:true,
-    text:'Total Revenue (billions)',
-    fontColor:'hotpink',
-    fontSize:32,
-  },
-  legend:{
-    position:'bottom',
-  },
-  scales:{
-    xAxes:[{
-      stacked:true
-    }],
-    yAxes:[{
-      stacked:true,
-      ticks:{
-        callback:function(value) {
-          return '$'+value
-
-        }
-      }
-    }],
-  },
