@@ -15,6 +15,7 @@
 
 require(rjson)
 require(rlist)
+require(caTools)
 
 TYPES = list(
   "bar",
@@ -36,28 +37,44 @@ checkType = function(type) {
 
 #'
 #' @export
-quickchartR <- function(type, inputData) {
-  checkType(type)
+quickchartR <-
+  function(type,
+           inputData,
+           colors = NULL,
+           options = NULL,
+           base64 = T) {
+    checkType(type)
 
-  MAIN_LINK = "https://quickchart.io/chart?c="
+    MAIN_LINK = paste0("https://quickchart.io/chart?")
 
-  labels = as.character(unique(inputData$label))
+    labels = as.character(unique(inputData$label))
 
-  # categories == values of x
-  categories = unique(inputData$x)
+    # categories == values of x
+    categories = unique(inputData$x)
 
-  datasets = list()
+    datasets = list()
 
-  for (label in labels) {
-    datasets = list.append(datasets, list(label = label, data =
-                                            as.list(inputData[inputData$label == label, ]$y)))
+    for (i in 1:length(labels)) {
+      datasets = list.append(datasets,
+                             list(
+                               label = labels[i],
+                               data =
+                                 as.list(inputData[inputData$label == labels[i],]$y),
+                               backgroundColor = colors[i]
+                             ))
+    }
+
+    data = list(labels = categories, datasets = datasets)
+
+    json <- list(type = type,
+                 data = data,
+                 options = options)
+    json = toJSON(json)
+
+    paste0(
+      MAIN_LINK,
+      ifelse(base64, "&encoding=base64", ""),
+      "&c=",
+      ifelse(base64, base64encode(json), json)
+    )
   }
-
-  data = list(labels = categories, datasets = datasets)
-
-  json <- list(type = type,
-               data = data)
-  json = toJSON(json)
-
-  paste0(MAIN_LINK, json)
-}
