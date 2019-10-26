@@ -1,6 +1,6 @@
 # quickchartR
 
-[![Build Status](https://travis-ci.org/JanSawicki/quickchartR.png?branch=master)](https://travis-ci.org/JanSawicki/quickchartR)  [![codecov](https://codecov.io/gh/JanSawicki/quickchartR/branch/master/graph/badge.svg)](https://codecov.io/gh/JanSawicki/quickchartR)
+[![Build Status](https://travis-ci.org/LuPaRaMySa/quickchartR.png?branch=master)](https://travis-ci.org/LuPaRaMySa/quickchartR)  [![codecov](https://codecov.io/gh/LuPaRaMySa/quickchartR/branch/master/graph/badge.svg)](https://codecov.io/gh/LuPaRaMySa/quickchartR)
 
 ## How to finish setting up your new package
 
