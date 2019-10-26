@@ -13,9 +13,9 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
-require(rjson)
-require(rlist)
-require(caTools)
+library(rjson)
+library(rlist)
+library(caTools)
 
 TYPES = list(
   "bar",
