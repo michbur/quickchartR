@@ -1,7 +1,3 @@
-<!-- badges: start -->
-  [![Travis build status](https://travis-ci.org/LuPaRaMySa/quickchartR.svg?branch=master)](https://travis-ci.org/LuPaRaMySa/quickchartR)
-<!-- badges: end -->
-
 # quickchartR
 
 [![Build Status](https://travis-ci.org/JanSawicki/quickchartR.png?branch=master)](https://travis-ci.org/JanSawicki/quickchartR)  [![codecov](https://codecov.io/gh/JanSawicki/quickchartR/branch/master/graph/badge.svg)](https://codecov.io/gh/JanSawicki/quickchartR)
