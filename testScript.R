@@ -1,6 +1,6 @@
 require(quickchartR)
 
-types = c("bar")
+types = c("bar", "line")
 inputData = data.frame(x = rep(1:3, 2),
                        y = 2 * 1:6,
                        label = rep(letters[1:2], 3))
@@ -14,5 +14,4 @@ options = list(
   legend = list(position = "bottom")
 )
 
-
-browseURL(quickchartR(types, inputData, colors, options))
+browseURL(quickchartR(types, inputData, colors, options, base64 = F))

@@ -5,14 +5,6 @@
   invisible()
 }
 
-#' @title hello function
-#'
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Build and Reload Package:  'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
-
 #install.packages("rjson")
 #install.packages("rlist")
 #install.packages("caTools")
@@ -33,7 +25,7 @@ TYPES = list(
   "sparkline"
 )
 
-checkType = function(types) {
+checkTypes = function(types) {
   for (type in types) {
     if (!(type %in% TYPES)) {
       stop(paste0(
@@ -48,21 +40,25 @@ getDatasets = function(types, inputData, labels, colors) {
   datasets = list()
 
   for (i in 1:length(labels)) {
-    datasets = list.append(
-      datasets,
-      list(
-        type = types[i],
-        label = labels[i],
-        data =
-          as.list(inputData[inputData$label == labels[i],]$y),
-        backgroundColor = colors[i]
-      )
+    nextDataset = list(
+      label = labels[i],
+      data =
+        as.list(inputData[inputData$label == labels[i], ]$y),
+      backgroundColor = colors[i]
     )
+
+    if (!is.na(types[i])) {
+      nextDataset[["type"]] = types[i]
+    }
+
+    datasets = list.append(datasets,
+                           nextDataset)
   }
 
   datasets
 }
 
+#' @title hello function
 #'
 #' @export
 quickchartR <-
@@ -85,7 +81,7 @@ quickchartR <-
 
     data = list(labels = categories, datasets = datasets)
 
-    json <- list(type = type,
+    json <- list(type = types[1],
                  data = data,
                  options = options)
     json = toJSON(json)
