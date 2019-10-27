@@ -15,6 +15,9 @@ test_that("Tests are running--delete this and put in real tests!", {
     legend = list(position = "bottom")
   )
 
+  require(rjson)
+  require(caTools)
+
   browseURL(quickchartR(types, inputData, colors, options, base64 = F))
 
   succeed()
