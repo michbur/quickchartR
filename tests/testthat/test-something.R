@@ -1,6 +1,7 @@
 context("Your first test")
 
 test_that("Tests are running--delete this and put in real tests!", {
+  skip_on_appveyor()
   types = c("bar", "line")
   inputData = data.frame(x = rep(1:3, 2),
                          y = 2 * 1:6,
