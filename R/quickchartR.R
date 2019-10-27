@@ -6,11 +6,9 @@
 }
 
 #install.packages("rjson")
-#install.packages("rlist")
 #install.packages("caTools")
 
 require(rjson)
-require(rlist)
 require(caTools)
 
 TYPES = list(
@@ -43,7 +41,7 @@ getDatasets = function(types, inputData, labels, colors) {
     nextDataset = list(
       label = labels[i],
       data =
-        as.list(inputData[inputData$label == labels[i], ]$y),
+        as.list(inputData[inputData$label == labels[i],]$y),
       backgroundColor = colors[i]
     )
 
@@ -51,8 +49,7 @@ getDatasets = function(types, inputData, labels, colors) {
       nextDataset[["type"]] = types[i]
     }
 
-    datasets = list.append(datasets,
-                           nextDataset)
+    datasets = c(datasets, list(nextDataset))
   }
 
   datasets

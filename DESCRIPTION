@@ -17,10 +17,10 @@ BugReports: https://github.com/LuPaRaMySa/quickchartR/issues
 License: MIT + file LICENSE
 Depends:
     R (>= 3.0.0)
-Imports:
-    rjson,
-    rlist,
-    caTools,
+Imports: 
+    rjson, 
+    rlist, 
+    caTools
 Suggests:
     covr,
     testthat
