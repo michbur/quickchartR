@@ -12,12 +12,15 @@ Date: 2019-10-24
 Authors@R: person("Jan", "Sawicki", role=c("aut", "cre"), email="jansawickisawicki@gmail.com")
 Author: Jan Sawicki [aut, cre]
 Maintainer: Jan Sawicki <jansawickisawicki@gmail.com>
-URL: https://github.com/JanSawicki/quickchartR
-BugReports: https://github.com/JanSawicki/quickchartR/issues
+URL: https://github.com/LuPaRaMySa/quickchartR
+BugReports: https://github.com/LuPaRaMySa/quickchartR/issues
 License: MIT + file LICENSE
 Depends:
     R (>= 3.0.0)
 Imports:
+    rjson,
+    rlist,
+    caTools,
 Suggests:
     covr,
     testthat

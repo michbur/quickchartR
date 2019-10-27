@@ -13,6 +13,10 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
+#install.packages("rjson")
+#install.packages("rlist")
+#install.packages("caTools")
+
 require(rjson)
 require(rlist)
 require(caTools)
@@ -29,21 +33,46 @@ TYPES = list(
   "sparkline"
 )
 
-checkType = function(type) {
-  if (!(type %in% TYPES)) {
-    stop(paste0("Incorrect chart type. Types: ", paste(TYPES, collapse = ', ')))
+checkType = function(types) {
+  for (type in types) {
+    if (!(type %in% TYPES)) {
+      stop(paste0(
+        "Incorrect chart type. Types: ",
+        paste(TYPES, collapse = ', ')
+      ))
+    }
   }
+}
+
+getDatasets = function(types, inputData, labels, colors) {
+  datasets = list()
+
+  for (i in 1:length(labels)) {
+    datasets = list.append(
+      datasets,
+      list(
+        type = types[i],
+        label = labels[i],
+        data =
+          as.list(inputData[inputData$label == labels[i],]$y),
+        backgroundColor = colors[i]
+      )
+    )
+  }
+
+  datasets
 }
 
 #'
 #' @export
 quickchartR <-
-  function(type,
+  function(types,
            inputData,
            colors = NULL,
            options = NULL,
+           additionalGraphsData = NULL,
            base64 = T) {
-    checkType(type)
+    checkTypes(types)
 
     MAIN_LINK = paste0("https://quickchart.io/chart?")
 
@@ -52,17 +81,7 @@ quickchartR <-
     # categories == values of x
     categories = unique(inputData$x)
 
-    datasets = list()
-
-    for (i in 1:length(labels)) {
-      datasets = list.append(datasets,
-                             list(
-                               label = labels[i],
-                               data =
-                                 as.list(inputData[inputData$label == labels[i],]$y),
-                               backgroundColor = colors[i]
-                             ))
-    }
+    datasets = getDatasets(types, inputData, labels, colors)
 
     data = list(labels = categories, datasets = datasets)
 

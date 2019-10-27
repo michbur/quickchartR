@@ -1,6 +1,6 @@
 require(quickchartR)
 
-type = "bar"
+types = c("bar")
 inputData = data.frame(x = rep(1:3, 2),
                        y = 2 * 1:6,
                        label = rep(letters[1:2], 3))
@@ -15,4 +15,4 @@ options = list(
 )
 
 
-browseURL(quickchartR(type, inputData, colors, options))
+browseURL(quickchartR(types, inputData, colors, options))
