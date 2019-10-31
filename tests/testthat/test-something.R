@@ -19,7 +19,7 @@ test_that("Tests are running--delete this and put in real tests!", {
   require(rjson)
   require(caTools)
 
-  browseURL(quickchartR(types, inputData, colors, options, base64 = F))
+  browseURL(quickchartR(types, inputData, x, y, colors, options, base64 = F))
 
   succeed()
 })
