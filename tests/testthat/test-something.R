@@ -2,10 +2,13 @@ context("Your first test")
 
 test_that("Tests are running--delete this and put in real tests!", {
   skip_on_appveyor()
-  types = c("bar", "line")
-  inputData = data.frame(x = rep(1:3, 2),
-                         y = 2 * 1:6,
-                         label = rep(letters[1:2], 3))
+  types = c("line", "bubble")
+  inputData = data.frame(
+    myXColumn = rep(1:3, 2),
+    myYColumn = 2 * 1:6,
+    yRColumn = 1:6,
+    myLabelColumn = rep(letters[1:2], 3)
+  )
   colors = c('blue', 'red')
   options = list(
     title = list(
@@ -16,10 +19,19 @@ test_that("Tests are running--delete this and put in real tests!", {
     legend = list(position = "bottom")
   )
 
-  require(rjson)
-  require(caTools)
-
-  browseURL(quickchartR(types, inputData, x, y, colors, options, base64 = F))
+  browseURL(
+    quickchartR(
+      types = types,
+      inputData = inputData,
+      xData = myXColumn,
+      yData = myYColumn,
+      rData = myRColumn,
+      labels = myLabelColumn,
+      colors = colors,
+      options = options,
+      base64 = F
+    )
+  )
 
   succeed()
 })

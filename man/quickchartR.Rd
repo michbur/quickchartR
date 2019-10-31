@@ -4,8 +4,9 @@
 \alias{quickchartR}
 \title{hello function}
 \usage{
-quickchartR(types, inputData, xData, yData, colors = NULL,
-  options = NULL, additionalGraphsData = NULL, base64 = T)
+quickchartR(types, inputData, xData, yData, labels, rData = NULL,
+  colors = NULL, options = NULL, additionalGraphsData = NULL,
+  base64 = T)
 }
 \description{
 hello function

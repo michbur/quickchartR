@@ -2,22 +2,24 @@
 
 .onAttach <- function (lib, pkgname = "quickchartR") {
   ## Put stuff here you want to run when your package is loaded
-  if(!require(rjson)) install.packages("rjson",repos = "http://cran.us.r-project.org")
-  if(!require(caTools)) install.packages("caTools",repos = "http://cran.us.r-project.org")
+  if (!require(rjson))
+    install.packages("rjson", repos = "http://cran.us.r-project.org")
+  if (!require(caTools))
+    install.packages("caTools", repos = "http://cran.us.r-project.org")
   invisible()
 }
 
-TYPES = list(
-  "bar",
-  "line",
-  "radar",
-  "pie",
-  "doughnut",
-  "scatter",
-  "bubble",
-  "radialGauge",
-  "sparkline"
-)
+# radialGauges are not included
+#"radialGauge",
+# sparklines are not included because they are a terrible visualization
+#"sparkline"
+TYPES = list("bar",
+             "line",
+             "radar",
+             "pie",
+             "doughnut",
+             "scatter",
+             "bubble")
 
 checkTypes = function(types) {
   for (type in types) {
@@ -30,16 +32,37 @@ checkTypes = function(types) {
   }
 }
 
+inputDataToNamedList = function(dataFrame) {
+  print(dataFrame)
+  namedList = list()
+  for (index in 1:nrow(dataFrame)) {
+    row = dataFrame[index,]
+    newList = list(x = row$x, y = row$y, r = row$r)
+    namedList[[length(namedList) + 1]] <- newList
+  }
+  namedList
+}
+
 getDatasets = function(types, inputData, labels, colors) {
   datasets = list()
 
   for (i in 1:length(labels)) {
-    nextDataset = list(
-      label = labels[i],
-      data =
-        as.list(inputData[inputData$label == labels[i], ]$y),
-      backgroundColor = colors[i]
-    )
+    if (types[i] == "bubble" || types[i] == "scatter") {
+      nextDataset = list(
+        label = labels[i],
+        data =
+          inputDataToNamedList(inputData),
+        backgroundColor = colors[i]
+      )
+    }
+    else{
+      nextDataset = list(
+        label = labels[i],
+        data =
+          as.list(inputData[inputData$label == labels[i],]$y),
+        backgroundColor = colors[i]
+      )
+    }
 
     if (!is.na(types[i])) {
       nextDataset[["type"]] = types[i]
@@ -54,8 +77,6 @@ getDatasets = function(types, inputData, labels, colors) {
 # https://github.com/mini-pw/2020Z-ProgramowanieWR/blob/9f1a3e4364fd372b92ede3635a8ed14f8e3fd430/Prezentacje/P2.Rmd#L112
 getElementNse <- function(input_list, element_name) {
   s_element_name <- element_name
-  print("S_ELEMENT_NAME:")
-  print(s_element_name)
   if (as.character(s_element_name) %in% names(input_list)) {
     eval(s_element_name, input_list)
   } else {
@@ -71,6 +92,8 @@ quickchartR <-
            inputData,
            xData,
            yData,
+           labels,
+           rData = NULL,
            colors = NULL,
            options = NULL,
            additionalGraphsData = NULL,
@@ -79,18 +102,22 @@ quickchartR <-
 
     xData = substitute(xData)
     yData = substitute(yData)
+    labels = substitute(labels)
+    rData = substitute(rData)
 
-    print(substitute(xData))
-    print(getElementNse(inputData, xData))
 
+    print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     inputData$x = getElementNse(inputData, xData)
     inputData$y = getElementNse(inputData, yData)
-
-    print(inputData)
+    inputData$labels = getElementNse(inputData, labels)
+    if (!is.null(rData))
+    {
+      inputData$r = getElementNse(inputData, rData)
+    }
 
     MAIN_LINK = paste0("https://quickchart.io/chart?")
 
-    labels = as.character(unique(inputData$label))
+    labels = as.character(unique(inputData$labels))
 
     # categories == values of x
     categories = unique(inputData$x)
