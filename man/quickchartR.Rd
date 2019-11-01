@@ -2,12 +2,12 @@
 % Please edit documentation in R/quickchartR.R
 \name{quickchartR}
 \alias{quickchartR}
-\title{hello function}
+\title{main function}
 \usage{
 quickchartR(types, inputData, xData, yData, labels, rData = NULL,
   colors = NULL, options = NULL, additionalGraphsData = NULL,
   base64 = T)
 }
 \description{
-hello function
+main function
 }
