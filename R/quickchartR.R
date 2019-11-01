@@ -23,6 +23,7 @@ MAIN_LINK = paste0("https://quickchart.io/chart?")
 
 # ---------------------------------- FUNCTIONS ----------------------------------
 
+#' @export
 checkTypes = function(types) {
   for (type in types) {
     if (!(type %in% TYPES)) {
@@ -36,6 +37,7 @@ checkTypes = function(types) {
 
 # takes a data frame with columns x, y, r
 # returns a list that will be converted to JSON
+#' @export
 inputDataToNamedList = function(dataFrame) {
   print(dataFrame)
   namedList = list()
@@ -48,6 +50,7 @@ inputDataToNamedList = function(dataFrame) {
 }
 
 # prepares datasets in list form to be converted to json
+#' @export
 getDatasets = function(types, inputData, labels, colors) {
   datasets = list()
 
@@ -82,6 +85,7 @@ getDatasets = function(types, inputData, labels, colors) {
 # https://github.com/mini-pw/2020Z-ProgramowanieWR/blob/9f1a3e4364fd372b92ede3635a8ed14f8e3fd430/Prezentacje/P2.Rmd#L157
 # gets element (e.g. column) from an object (e.g. dataframe) using NSE, i.e. element_name is not string but object
 # e.g. getElementNse(input_list, x) returns input_list$x (x is NOT a string)
+#' @export
 getElementNse <- function(input_list, element_name) {
   s_element_name <- element_name
   if (as.character(s_element_name) %in% names(input_list)) {
@@ -91,20 +95,24 @@ getElementNse <- function(input_list, element_name) {
   }
 }
 
+#' @export
 getLabels = function(labels) {
   as.character(unique(labels))
 }
 
+#' @export
 prepareData = function(categories, datasets) {
   list(labels = categories, datasets = datasets)
 }
 
+#' @export
 prepareJson = function(mainType, data, options) {
   list(type = mainType,
        data = data,
        options = options)
 }
 
+#' @export
 createLink = function(json, base64) {
   paste0(
     MAIN_LINK,
