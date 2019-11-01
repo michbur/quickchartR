@@ -24,6 +24,14 @@ test_that("output type of prepareJson", {
   expect_type(prepareJson(mainType, data, options), "list")
 })
 
+test_that("output type of createLink", {
+  expect_type(createLink('aaaaa',T), "character")
+})
+
+test_that("corectness of link in createLink", {
+  expect_equal(createLink('aaaaa',T), "https://quickchart.io/chart?&encoding=base64&c=YWFhYWE=")
+})
+
 test_that("output type of inputDataToNamedList", {
   inputData <- data.frame("x" = 1:10, "y" = 1:10, "r" = 1:10)
   expect_type(inputDataToNamedList(inputData), "list")
