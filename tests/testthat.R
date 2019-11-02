@@ -30,6 +30,8 @@ test_that("output type of createLink", {
 
 test_that("corectness of link in createLink", {
   expect_equal(createLink('aaaaa',T), "https://quickchart.io/chart?&encoding=base64&c=YWFhYWE=")
+  expect_equal(createLink('bcdef',T), "https://quickchart.io/chart?&encoding=base64&c=YmNkZWY=")
+  expect_equal(createLink('Jacek',T), "https://quickchart.io/chart?&encoding=base64&c=SmFjZWs=")
 })
 
 test_that("output type of inputDataToNamedList", {
