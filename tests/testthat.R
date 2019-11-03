@@ -1,6 +1,10 @@
 library(testthat)
 library(quickchartR)
 
+test_that("checkTypes function simulate error", {
+  expect_error(checkTypes("costam"))
+})
+
 test_that("output type of getLabels", {
   labels <- 1:10
   expect_type(getLabels(labels), "character")
