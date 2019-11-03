@@ -12,5 +12,5 @@ coverage:
         threshold: 1%
 
 codecov:
-  token: 1a8017eb-bd6a-4ac2-be6e-d803cf79dba8
-  
+  token: 5e9b6f9f-cb66-4037-8515-ac02e6dcec79
+
