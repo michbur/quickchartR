@@ -7,6 +7,7 @@ inputData = data.frame(
   yRColumn = 1:6,
   myLabelColumn = rep(letters[1:2], 3)
 )
+
 colors = c('blue', 'red')
 options = list(
   title = list(
