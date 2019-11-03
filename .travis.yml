@@ -4,6 +4,5 @@ warnings_are_errors: false
 
 language: R
 cache: packages
-
-    - Rscript -e 'covr::codecov()'
 after_success:
+    - Rscript -e 'covr::codecov()'
