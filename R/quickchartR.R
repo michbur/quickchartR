@@ -9,18 +9,8 @@
 
 # ---------------------------------- CONSTANTS ----------------------------------
 
-#' Defines all handled chart types
-#' Note that type "sparkline" is not present.
-#' In its assumption of "simplicity" which ignores labels, axis etc. sparkline chartit
-#' is considered a terrible data visualization practice.
-#' Even though it is usually used e.g. inside a table to minimize the eye-candy and with
-#' a common axis with other charts, implementing it here would cause someone who is not
-#' familiar with advanced data visualization and good practices to make a mistake (e.g. by
-#' using it regardless of its true purpose).
-#' It is assumed that professional data scientists do NOT use Quickcharts for their
-#' charts because they have their own advanced tools for it.
-#' Therefore, to somehow control and help the newbie data visualizators, sparkline chart
-#' is NOT included in quickchartR.
+# "radialGauge" type is not included
+# "sparkline" type is not included because they are a terrible visualizations
 TYPES = list("bar",
              "line",
              "radar",
@@ -33,7 +23,18 @@ MAIN_LINK = paste0("https://quickchart.io/chart?")
 
 # ---------------------------------- FUNCTIONS ----------------------------------
 
+
+#' @title Check Type Function
+#' @param types list of type of charts
+#' @details Function checks type of charts wchich we want to draw.
+#' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
+#' @examples
+#' types = c("line", "bubble")
+#' checkType(types)
+#'
+#' checkType(c('xxx','yyy'))
+#' # Incorrect chart type.
 checkTypes = function(types) {
   for (type in types) {
     if (!(type %in% TYPES)) {
@@ -44,9 +45,10 @@ checkTypes = function(types) {
     }
   }
 }
-
-# takes a data frame with columns x, y, r
-# returns a list that will be converted to JSON
+#' @title Data To NamedList
+#' @param dataFrame DataFrame with columns "x","y","r"
+#' @details Function takes a data frame with columns "x", "y", "r" and returns a list that will be converted to JSON
+#' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 inputDataToNamedList = function(dataFrame) {
   print(dataFrame)
@@ -59,7 +61,14 @@ inputDataToNamedList = function(dataFrame) {
   namedList
 }
 
-# prepares datasets in list form to be converted to json
+#
+#' @title From NamedList to Datasets
+#' @param types list of type of charts
+#' @param inputData DataFrame with columns "x","y","r"
+#' @param labels Names of columns wchich be used to bulid charts
+#' @param colors list of background colors wchich be used
+#' @details Function prepares datasets in list form to be converted to json
+#' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 getDatasets = function(types, inputData, labels, colors) {
   datasets = list()
@@ -95,6 +104,13 @@ getDatasets = function(types, inputData, labels, colors) {
 # https://github.com/mini-pw/2020Z-ProgramowanieWR/blob/9f1a3e4364fd372b92ede3635a8ed14f8e3fd430/Prezentacje/P2.Rmd#L157
 # gets element (e.g. column) from an object (e.g. dataframe) using NSE, i.e. element_name is not string but object
 # e.g. getElementNse(input_list, x) returns input_list$x (x is NOT a string)
+
+
+#' @title Get Element NSE
+#' @param input_list object wchich one of elemets name is element_name
+#' @param element_name name of element without parethesis
+#' @details Function allows to take element from the input_list without uses parethesis
+#' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 getElementNse <- function(input_list, element_name) {
   s_element_name <- element_name
@@ -104,17 +120,29 @@ getElementNse <- function(input_list, element_name) {
     NULL
   }
 }
-
+#' @title Get Labels
+#' @param labels list of labels
+#' @details Function returns list of unique labels
+#' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 getLabels = function(labels) {
   as.character(unique(labels))
 }
-
+#' @title Prepare Data
+#' @param categories list of categories/labels
+#' @param datasets list of data wchch be used to build chart
+#' @details Function returns list of labels and datasets
+#' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 prepareData = function(categories, datasets) {
   list(labels = categories, datasets = datasets)
 }
-
+#' @title Prepare Json
+#' @param mainType XXXXXXXXXXXXXX
+#' @param data list of datasets
+#' @param options list of options to create Json
+#' @details Functons prepare objetc to create Json
+#' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 prepareJson = function(mainType, data, options) {
   list(type = mainType,
@@ -122,6 +150,11 @@ prepareJson = function(mainType, data, options) {
        options = options)
 }
 
+#' @title Create Link
+#' @param base64 XXXXXXXXXXXXXXXXXXX
+#' @param json file with format Json to save in link
+#' @details Functions create link to given Json
+#' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 createLink = function(json, base64) {
   paste0(
@@ -132,8 +165,19 @@ createLink = function(json, base64) {
   )
 }
 
-#' @title main function
-#'
+#' @title Main function
+#' @param types list of types of charts
+#' @param inputData DataFrame with columns "x","y","r"
+#' @param xData data wchich be used to plot xaxis
+#' @param yData data wchich be used to plot yaxis
+#' @param labels list name of labels
+#' @param rData XXXXXXXXXXXXXx
+#' @param colors list of background colors wchich be used
+#' @param options list of options to create Json
+#' @param additionalGraphsData XXXXXXXXXXXXXXXXXXXXXXX
+#' @param base64 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+#' @details Functions create same basic charts from inputData.
+#' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 quickchartR <-
   function(types,
