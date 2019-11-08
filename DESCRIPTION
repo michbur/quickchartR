@@ -1,12 +1,7 @@
 Package: quickchartR
 Type: Package
-Title: Informative Title for Your Package
-Description: A longer statement about what this does. It must have at least one
-    complete sentence, and it may not begin with the name of the package or
-    "This package". Any URL must be enclosed in angle brackets. Any R packages
-    or other software you reference must be in single quotes. 'R CMD check'
-    may not report on these, but see  <https://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file>.
-    Failure to obey may result in CRAN rejecting your package submission.
+Title: quickcharts.io from R Code!
+Description: Creating charts using quickcharts.io straight from R code. The package is dedicated to data scientists who start their journey with data visualization. Professionals are advised to use a more advanced tools (like ggplot2).
 Version: 0.1.0
 Date: 2019-10-24
 Authors@R: person("Jan", "Sawicki", role=c("aut", "cre"), email="jansawickisawicki@gmail.com")
@@ -19,7 +14,6 @@ Depends:
     R (>= 3.0.0)
 Imports: 
     rjson, 
-    rlist, 
     caTools
 Suggests:
     covr,
