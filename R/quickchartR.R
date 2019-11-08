@@ -9,8 +9,18 @@
 
 # ---------------------------------- CONSTANTS ----------------------------------
 
-# "radialGauge" type is not included
-# "sparkline" type is not included because they are a terrible visualizations
+#' Defines all handled chart types
+#' Note that type "sparkline" is not present.
+#' In its assumption of "simplicity" which ignores labels, axis etc. sparkline chartit
+#' is considered a terrible data visualization practice.
+#' Even though it is usually used e.g. inside a table to minimize the eye-candy and with
+#' a common axis with other charts, implementing it here would cause someone who is not
+#' familiar with advanced data visualization and good practices to make a mistake (e.g. by
+#' using it regardless of its true purpose).
+#' It is assumed that professional data scientists do NOT use Quickcharts for their
+#' charts because they have their own advanced tools for it.
+#' Therefore, to somehow control and help the newbie data visualizators, sparkline chart
+#' is NOT included in quickchartR.
 TYPES = list("bar",
              "line",
              "radar",
