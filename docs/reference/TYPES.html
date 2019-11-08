@@ -19,11 +19,13 @@ charts because they have their own advanced tools for it.
 Therefore, to somehow control and help the newbie data visualizators, sparkline chart
 is NOT included in quickchartR. — TYPES • quickchartR</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -43,6 +45,7 @@ is NOT included in quickchartR. — TYPES • quickchartR</title>
 
 
 
+
 <meta property="og:title" content="Defines all handled chart types
 Note that type "sparkline" is not present.
 In its assumption of "simplicity" which ignores labels, axis etc. sparkline chartit
@@ -55,7 +58,6 @@ It is assumed that professional data scientists do NOT use Quickcharts for their
 charts because they have their own advanced tools for it.
 Therefore, to somehow control and help the newbie data visualizators, sparkline chart
 is NOT included in quickchartR. — TYPES" />
-
 <meta property="og:description" content="Defines all handled chart types
 Note that type &quot;sparkline&quot; is not present.
 In its assumption of &quot;simplicity&quot; which ignores labels, axis etc. sparkline chartit
@@ -69,6 +71,7 @@ charts because they have their own advanced tools for it.
 Therefore, to somehow control and help the newbie data visualizators, sparkline chart
 is NOT included in quickchartR." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -99,7 +102,7 @@ is NOT included in quickchartR." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">quickchartR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -114,13 +117,29 @@ is NOT included in quickchartR." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/quickchartR-vignette.html">Introduction to quickchartR</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/LuPaRaMySa/quickchartR">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -146,12 +165,11 @@ It is assumed that professional data scientists do NOT use Quickcharts for their
 charts because they have their own advanced tools for it.
 Therefore, to somehow control and help the newbie data visualizators, sparkline chart
 is NOT included in quickchartR.</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/LuPaRaMySa/quickchartR/blob/master/R/quickchartR.R'><code>R/quickchartR.R</code></a></small>
     <div class="hidden name"><code>TYPES.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p>Defines all handled chart types
 Note that type "sparkline" is not present.
 In its assumption of "simplicity" which ignores labels, axis etc. sparkline chartit
@@ -164,23 +182,21 @@ It is assumed that professional data scientists do NOT use Quickcharts for their
 charts because they have their own advanced tools for it.
 Therefore, to somehow control and help the newbie data visualizators, sparkline chart
 is NOT included in quickchartR.</p>
-    
     </div>
 
     <pre class="usage"><span class='no'>TYPES</span></pre>
-        
+
+
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>An object of class <code>list</code> of length 7.</p>
-    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      
       <li><a href="#format">Format</a></li>
-          </ul>
+    </ul>
 
   </div>
 </div>
@@ -188,7 +204,7 @@ is NOT included in quickchartR.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by First Last.</p>
+  <p>Developed by Jan Sawicki.</p>
 </div>
 
 <div class="pkgdown">
