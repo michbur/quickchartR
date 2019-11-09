@@ -1,5 +1,4 @@
 .onAttach <- function (lib, pkgname = "quickchartR") {
-  ## Put stuff here you want to run when your package is loaded
   if (!require(rjson))
     install.packages("rjson", repos = "http://cran.us.r-project.org")
   if (!require(caTools))
@@ -54,7 +53,7 @@ inputDataToNamedList = function(dataFrame) {
   print(dataFrame)
   namedList = list()
   for (index in 1:nrow(dataFrame)) {
-    row = dataFrame[index, ]
+    row = dataFrame[index,]
     newList = list(x = row$x, y = row$y, r = row$r)
     namedList[[length(namedList) + 1]] <- newList
   }
@@ -70,7 +69,11 @@ inputDataToNamedList = function(dataFrame) {
 #' @details Function prepares datasets in list form to be converted to json
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
-getDatasets = function(types, inputData, labels, colors, detailedOptions) {
+getDatasets = function(types,
+                       inputData,
+                       labels,
+                       colors,
+                       detailedOptions) {
   datasets = list()
 
   for (i in 1:length(labels)) {
@@ -86,7 +89,7 @@ getDatasets = function(types, inputData, labels, colors, detailedOptions) {
       nextDataset = list(
         label = labels[i],
         data =
-          as.list(inputData[inputData$label == labels[i], ]$y),
+          as.list(inputData[inputData$label == labels[i],]$y),
         backgroundColor = colors[i],
         fill = detailedOptions[[i]]$fill
       )
