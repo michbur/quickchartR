@@ -19,7 +19,9 @@ Suggests:
     covr,
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    spelling
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
+Language: en-US
