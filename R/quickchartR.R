@@ -220,8 +220,10 @@ quickchartR <-
     inputData$x = getElementNse(inputData, xData)
     inputData$y = getElementNse(inputData, yData)
     inputData$labels = getElementNse(inputData, labels)
+    if (!is.null(rData))
+    {
     inputData$r = getElementNse(inputData, rData)
-
+    }
     labels = getLabels(inputData$labels)
 
     # categories == values of x
