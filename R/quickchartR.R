@@ -8,8 +8,21 @@
 
 # ---------------------------------- CONSTANTS ----------------------------------
 
-# "radialGauge" type is not included
-# "sparkline" type is not included because they are a terrible visualizations
+#' @title TYPES list
+#' @details Defines all handled chart types
+#' Note that type "sparkline" is not present.
+#' In its assumption of "simplicity" which ignores labels, axis etc. sparkline chartit
+#' is considered a terrible data visualization practice.
+#' Even though it is usually used e.g. inside a table to minimize the eye-candy and with
+#' a common axis with other charts, implementing it here would cause someone who is not
+#' familiar with advanced data visualization and good practices to make a mistake (e.g. by
+#' using it regardless of its true purpose).
+#' It is assumed that professional data scientists do NOT use Quickcharts for their
+#' charts because they have their own advanced tools for it.
+#' Therefore, to somehow control and help the newbie data visualizators, sparkline chart
+#' is NOT included in quickchartR.
+#' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
+#' @export
 TYPES = list("bar",
              "line",
              "radar",
@@ -18,22 +31,21 @@ TYPES = list("bar",
              "scatter",
              "bubble")
 
+#' @title Main link to quickchart.io
+#' @details Main link to quickchart.io used to construct the final link to chart
 MAIN_LINK = paste0("https://quickchart.io/chart?")
 
 # ---------------------------------- FUNCTIONS ----------------------------------
 
 
 #' @title Check Type Function
-#' @param types list of type of charts
+#' @param types list of types of charts
 #' @details Function checks type of charts which we want to draw.
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 #' @examples
 #' types = c("line", "bubble")
-#' checkType(types)
-#'
-#' checkType(c('xxx','yyy'))
-#' # Incorrect chart type.
+#' checkTypes(types)
 checkTypes = function(types) {
   for (type in types) {
     if (!(type %in% TYPES)) {
@@ -50,7 +62,6 @@ checkTypes = function(types) {
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 inputDataToNamedList = function(dataFrame) {
-  print(dataFrame)
   namedList = list()
   for (index in 1:nrow(dataFrame)) {
     row = dataFrame[index,]

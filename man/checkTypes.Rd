@@ -7,7 +7,7 @@
 checkTypes(types)
 }
 \arguments{
-\item{types}{list of type of charts}
+\item{types}{list of types of charts}
 }
 \description{
 Check Type Function
@@ -17,10 +17,7 @@ Function checks type of charts which we want to draw.
 }
 \examples{
 types = c("line", "bubble")
-checkType(types)
-
-checkType(c('xxx','yyy'))
-# Incorrect chart type.
+checkTypes(types)
 }
 \author{
 Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
