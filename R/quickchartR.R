@@ -26,7 +26,7 @@ MAIN_LINK = paste0("https://quickchart.io/chart?")
 
 #' @title Check Type Function
 #' @param types list of type of charts
-#' @details Function checks type of charts wchich we want to draw.
+#' @details Function checks type of charts which we want to draw.
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 #' @examples
@@ -65,12 +65,12 @@ inputDataToNamedList = function(dataFrame) {
 #' @title From NamedList to Datasets
 #' @param types list of type of charts
 #' @param inputData DataFrame with columns "x","y","r"
-#' @param labels Names of columns wchich be used to bulid charts
-#' @param colors list of background colors wchich be used
+#' @param labels Names of columns which be used to build charts
+#' @param colors list of background colors which be used
 #' @details Function prepares datasets in list form to be converted to json
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
-getDatasets = function(types, inputData, labels, colors) {
+getDatasets = function(types, inputData, labels, colors, detailedOptions) {
   datasets = list()
 
   for (i in 1:length(labels)) {
@@ -87,7 +87,8 @@ getDatasets = function(types, inputData, labels, colors) {
         label = labels[i],
         data =
           as.list(inputData[inputData$label == labels[i], ]$y),
-        backgroundColor = colors[i]
+        backgroundColor = colors[i],
+        fill = detailedOptions[[i]]$fill
       )
     }
 
@@ -107,9 +108,9 @@ getDatasets = function(types, inputData, labels, colors) {
 
 
 #' @title Get Element NSE
-#' @param input_list object wchich one of elemets name is element_name
-#' @param element_name name of element without parethesis
-#' @details Function allows to take element from the input_list without uses parethesis
+#' @param input_list object which one of elements name is element_name
+#' @param element_name name of element without parenthesis
+#' @details Function allows to take element from the input_list without uses parenthesis
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 getElementNse <- function(input_list, element_name) {
@@ -120,6 +121,7 @@ getElementNse <- function(input_list, element_name) {
     NULL
   }
 }
+
 #' @title Get Labels
 #' @param labels list of labels
 #' @details Function returns list of unique labels
@@ -130,18 +132,19 @@ getLabels = function(labels) {
 }
 #' @title Prepare Data
 #' @param categories list of categories/labels
-#' @param datasets list of data wchch be used to build chart
+#' @param datasets list of data which be used to build chart
 #' @details Function returns list of labels and datasets
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 prepareData = function(categories, datasets) {
   list(labels = categories, datasets = datasets)
 }
+
 #' @title Prepare Json
-#' @param mainType XXXXXXXXXXXXXX
+#' @param mainType string that describes first (main) chart type
 #' @param data list of datasets
 #' @param options list of options to create Json
-#' @details Functons prepare objetc to create Json
+#' @details Functions prepare object to create Json
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 prepareJson = function(mainType, data, options) {
@@ -151,7 +154,7 @@ prepareJson = function(mainType, data, options) {
 }
 
 #' @title Create Link
-#' @param base64 XXXXXXXXXXXXXXXXXXX
+#' @param base64 boolean describing if the url should or should not be encoded in base64
 #' @param json file with format Json to save in link
 #' @details Functions create link to given Json
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
@@ -168,14 +171,14 @@ createLink = function(json, base64) {
 #' @title Main function
 #' @param types list of types of charts
 #' @param inputData DataFrame with columns "x","y","r"
-#' @param xData data wchich be used to plot xaxis
-#' @param yData data wchich be used to plot yaxis
+#' @param xData data which be used to plot x axis
+#' @param yData data which be used to plot y axis
 #' @param labels list name of labels
-#' @param rData XXXXXXXXXXXXXx
-#' @param colors list of background colors wchich be used
+#' @param rData data which be used to plot r axis (e.g. for bubble charts)
+#' @param colors list of background colors which be used
 #' @param options list of options to create Json
-#' @param additionalGraphsData XXXXXXXXXXXXXXXXXXXXXXX
-#' @param base64 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+#' @param detailedOptions list of lists of additional options only "fill" for line graphs is handled
+#' @param base64 boolean describing if the url should or should not be encoded in base64
 #' @details Functions create same basic charts from inputData.
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
@@ -188,7 +191,7 @@ quickchartR <-
            rData = NULL,
            colors = NULL,
            options = NULL,
-           additionalGraphsData = NULL,
+           detailedOptions = NULL,
            base64 = T) {
     checkTypes(types)
 
@@ -210,7 +213,7 @@ quickchartR <-
     # categories == values of x
     categories = unique(inputData$x)
 
-    datasets = getDatasets(types, inputData, labels, colors)
+    datasets = getDatasets(types, inputData, labels, colors, detailedOptions)
 
     data = prepareData(categories, datasets)
 
