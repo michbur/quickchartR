@@ -13,7 +13,7 @@ getLabels(labels)
 Get Labels
 }
 \details{
-Function returns list of unique labels
+Returns a list of unique labels
 }
 \author{
 Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki

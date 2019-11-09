@@ -13,11 +13,14 @@ checkTypes(types)
 Check Type Function
 }
 \details{
-Function checks type of charts which we want to draw.
+Checks types of charts (verifis with list TYPES)
 }
 \examples{
 types = c("line", "bubble")
 checkTypes(types)
+}
+\seealso{
+TYPES
 }
 \author{
 Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki

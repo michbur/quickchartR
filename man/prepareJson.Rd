@@ -17,7 +17,7 @@ prepareJson(mainType, data, options)
 Prepare Json
 }
 \details{
-Functions prepare object to create Json
+Prepares a list to be converted into Json
 }
 \author{
 Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki

@@ -19,7 +19,7 @@ getDatasets(types, inputData, labels, colors, detailedOptions)
 From NamedList to Datasets
 }
 \details{
-Function prepares datasets in list form to be converted to json
+Prepares datasets in the form of a list to be converted to JSON
 }
 \author{
 Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki

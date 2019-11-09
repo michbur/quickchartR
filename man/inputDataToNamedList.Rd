@@ -13,7 +13,7 @@ inputDataToNamedList(dataFrame)
 Data To NamedList
 }
 \details{
-Function takes a data frame with columns "x", "y", "r" and returns a list that will be converted to JSON
+Takes a data frame with columns "x", "y", "r" and returns a list that will be converted to JSON
 }
 \author{
 Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki

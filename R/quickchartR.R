@@ -1,3 +1,6 @@
+#' @title on attaching the package
+#' @details installs required packages if they are not present
+#' @seealso rjson, caTools
 .onAttach <- function (lib, pkgname = "quickchartR") {
   if (!require(rjson))
     install.packages("rjson", repos = "http://cran.us.r-project.org")
@@ -9,8 +12,7 @@
 # ---------------------------------- CONSTANTS ----------------------------------
 
 #' @title TYPES list
-#' @details Defines all handled chart types
-#' Note that type "sparkline" is not present.
+#' @details Defines all handled chart types Note that type "sparkline" is not present.
 #' In its assumption of "simplicity" which ignores labels, axis etc. sparkline chartit
 #' is considered a terrible data visualization practice.
 #' Even though it is usually used e.g. inside a table to minimize the eye-candy and with
@@ -40,7 +42,8 @@ MAIN_LINK = paste0("https://quickchart.io/chart?")
 
 #' @title Check Type Function
 #' @param types list of types of charts
-#' @details Function checks type of charts which we want to draw.
+#' @details Checks types of charts (verifis with list TYPES)
+#' @seealso TYPES
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 #' @examples
@@ -58,7 +61,7 @@ checkTypes = function(types) {
 }
 #' @title Data To NamedList
 #' @param dataFrame DataFrame with columns "x","y","r"
-#' @details Function takes a data frame with columns "x", "y", "r" and returns a list that will be converted to JSON
+#' @details Takes a data frame with columns "x", "y", "r" and returns a list that will be converted to JSON
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 inputDataToNamedList = function(dataFrame) {
@@ -77,7 +80,7 @@ inputDataToNamedList = function(dataFrame) {
 #' @param inputData DataFrame with columns "x","y","r"
 #' @param labels Names of columns which be used to build charts
 #' @param colors list of background colors which be used
-#' @details Function prepares datasets in list form to be converted to json
+#' @details Prepares datasets in the form of a list to be converted to JSON
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 getDatasets = function(types,
@@ -124,7 +127,7 @@ getDatasets = function(types,
 #' @title Get Element NSE
 #' @param input_list object which one of elements name is element_name
 #' @param element_name name of element without parenthesis
-#' @details Function allows to take element from the input_list without uses parenthesis
+#' @details Allows to take element from the input_list without uses parenthesis (using non-standard evaluation)
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 getElementNse <- function(input_list, element_name) {
@@ -138,7 +141,7 @@ getElementNse <- function(input_list, element_name) {
 
 #' @title Get Labels
 #' @param labels list of labels
-#' @details Function returns list of unique labels
+#' @details Returns a list of unique labels
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 getLabels = function(labels) {
@@ -147,7 +150,7 @@ getLabels = function(labels) {
 #' @title Prepare Data
 #' @param categories list of categories/labels
 #' @param datasets list of data which be used to build chart
-#' @details Function returns list of labels and datasets
+#' @details Returns list of labels and datasets
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 prepareData = function(categories, datasets) {
@@ -158,7 +161,7 @@ prepareData = function(categories, datasets) {
 #' @param mainType string that describes first (main) chart type
 #' @param data list of datasets
 #' @param options list of options to create Json
-#' @details Functions prepare object to create Json
+#' @details Prepares a list to be converted into Json
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 prepareJson = function(mainType, data, options) {
@@ -170,7 +173,7 @@ prepareJson = function(mainType, data, options) {
 #' @title Create Link
 #' @param base64 boolean describing if the url should or should not be encoded in base64
 #' @param json file with format Json to save in link
-#' @details Functions create link to given Json
+#' @details Creates link to given Json
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 createLink = function(json, base64) {
@@ -184,16 +187,16 @@ createLink = function(json, base64) {
 
 #' @title Main function
 #' @param types list of types of charts
-#' @param inputData DataFrame with columns "x","y","r"
-#' @param xData data which be used to plot x axis
-#' @param yData data which be used to plot y axis
+#' @param inputData data.frame with columns "x","y","r"
+#' @param xData data which be used to plot x axis (column of inputData)
+#' @param yData data which be used to plot y axis (column of inputData)
 #' @param labels list name of labels
-#' @param rData data which be used to plot r axis (e.g. for bubble charts)
+#' @param rData data which be used to plot r axis, e.g. for bubble charts (column of inputData)
 #' @param colors list of background colors which be used
 #' @param options list of options to create Json
-#' @param detailedOptions list of lists of additional options only "fill" for line graphs is handled
+#' @param detailedOptions list of lists of additional options; only "fill" for line graphs is handled
 #' @param base64 boolean describing if the url should or should not be encoded in base64
-#' @details Functions create same basic charts from inputData.
+#' @details Creates a link to quickchart with chart/charts based on inputData.
 #' @author Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 #' @export
 quickchartR <-
@@ -217,10 +220,7 @@ quickchartR <-
     inputData$x = getElementNse(inputData, xData)
     inputData$y = getElementNse(inputData, yData)
     inputData$labels = getElementNse(inputData, labels)
-    #if (!is.null(rData))
-    #{
     inputData$r = getElementNse(inputData, rData)
-    #}
 
     labels = getLabels(inputData$labels)
 

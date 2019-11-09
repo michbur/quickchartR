@@ -15,7 +15,7 @@ getElementNse(input_list, element_name)
 Get Element NSE
 }
 \details{
-Function allows to take element from the input_list without uses parenthesis
+Allows to take element from the input_list without uses parenthesis (using non-standard evaluation)
 }
 \author{
 Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki

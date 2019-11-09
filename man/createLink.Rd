@@ -15,7 +15,7 @@ createLink(json, base64)
 Create Link
 }
 \details{
-Functions create link to given Json
+Creates link to given Json
 }
 \author{
 Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki

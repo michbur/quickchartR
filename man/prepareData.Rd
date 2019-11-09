@@ -15,7 +15,7 @@ prepareData(categories, datasets)
 Prepare Data
 }
 \details{
-Function returns list of labels and datasets
+Returns list of labels and datasets
 }
 \author{
 Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki

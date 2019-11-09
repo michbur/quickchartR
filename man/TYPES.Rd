@@ -12,8 +12,7 @@ TYPES
 TYPES list
 }
 \details{
-Defines all handled chart types
-Note that type "sparkline" is not present.
+Defines all handled chart types Note that type "sparkline" is not present.
 In its assumption of "simplicity" which ignores labels, axis etc. sparkline chartit
 is considered a terrible data visualization practice.
 Even though it is usually used e.g. inside a table to minimize the eye-candy and with
