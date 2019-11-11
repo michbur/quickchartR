@@ -4,5 +4,6 @@
 
 quichartR (pron. 'quickcharter') is API for quickcharts.io in R
 
+![](https://raw.githubusercontent.com/LuPaRaMySa/quickchartR/master/hex/quickchartrHex.png)
 
-Ćheckout example.R to see an advanced example!
+Checkout example.R to see an advanced example!
