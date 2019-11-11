@@ -15,7 +15,8 @@ Depends:
 Imports: 
     rjson, 
     caTools,
-	dplyr
+	dplyr, 
+	rmarkdown (>= 1.16)
 Suggests:
     covr,
     testthat,
