@@ -4,6 +4,5 @@
 
 quichartR (pron. 'quickcharter') is API for quickcharts.io in R
 
-<img src="hex/quickchartrHex.svg" width = "400px">
 
 Ćheckout example.R to see an advanced example!
