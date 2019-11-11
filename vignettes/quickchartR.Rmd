@@ -84,6 +84,7 @@ browseURL(
 
 Our result:
 
+![](img/pie.png)
 
 
 ### Doughnut chart
@@ -165,7 +166,6 @@ browseURL(
   )
 )
 ```
-
 
 ### Radar chart
 
@@ -249,7 +249,6 @@ browseURL(
 )
 
 ```
-
 
 
 
