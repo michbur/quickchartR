@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>main function — quickchartR • quickchartR</title>
+<title>Main function — quickchartR • quickchartR</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="main function — quickchartR" />
-<meta property="og:description" content="main function" />
+<meta property="og:title" content="Main function — quickchartR" />
+<meta property="og:description" content="Main function" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -82,6 +82,9 @@
   </a>
 </li>
 <li>
+  <a href="../articles/quickchartR.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -120,27 +123,78 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>main function</h1>
+    <h1>Main function</h1>
     <small class="dont-index">Source: <a href='https://github.com/LuPaRaMySa/quickchartR/blob/master/R/quickchartR.R'><code>R/quickchartR.R</code></a></small>
     <div class="hidden name"><code>quickchartR.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>main function</p>
+    <p>Main function</p>
     </div>
 
     <pre class="usage"><span class='fu'>quickchartR</span>(<span class='no'>types</span>, <span class='no'>inputData</span>, <span class='no'>xData</span>, <span class='no'>yData</span>, <span class='no'>labels</span>, <span class='kw'>rData</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>additionalGraphsData</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>detailedOptions</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>base64</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>types</th>
+      <td><p>list of types of charts</p></td>
+    </tr>
+    <tr>
+      <th>inputData</th>
+      <td><p>data.frame with columns "x","y","r"</p></td>
+    </tr>
+    <tr>
+      <th>xData</th>
+      <td><p>data which be used to plot x axis (column of inputData)</p></td>
+    </tr>
+    <tr>
+      <th>yData</th>
+      <td><p>data which be used to plot y axis (column of inputData)</p></td>
+    </tr>
+    <tr>
+      <th>labels</th>
+      <td><p>list name of labels</p></td>
+    </tr>
+    <tr>
+      <th>rData</th>
+      <td><p>data which be used to plot r axis, e.g. for bubble charts (column of inputData)</p></td>
+    </tr>
+    <tr>
+      <th>colors</th>
+      <td><p>list of background colors which be used</p></td>
+    </tr>
+    <tr>
+      <th>options</th>
+      <td><p>list of options to create Json</p></td>
+    </tr>
+    <tr>
+      <th>detailedOptions</th>
+      <td><p>list of lists of additional options; only "fill" for line graphs is handled</p></td>
+    </tr>
+    <tr>
+      <th>base64</th>
+      <td><p>boolean describing if the url should or should not be encoded in base64</p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Creates a link to quickchart with chart/charts based on inputData.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#details">Details</a></li>
     </ul>
 
+    <h2>Author</h2>
+    <p>Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki</p>
   </div>
 </div>
 

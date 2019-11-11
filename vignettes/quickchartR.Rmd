@@ -1,0 +1,351 @@
+---
+title: "Introduction to quickchartR"
+output: rmarkdown::html_vignette
+author: "Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki"
+date: "`r Sys.Date()`"
+resource_files:
+  - img/pie.png
+vignette: >
+  %\VignetteIndexEntry{quickchartR-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message=FALSE, echo=FALSE, warning=FALSE}
+require(quickchartR)
+library(dplyr)
+```
+
+
+
+# Introduction
+
+<p style='text-align: justify;'> 
+Quickchart.io is a powerful application which provides fine and fast charts of different types. The problem is that the way of creating  charts is based on a specific URL form, what is not convenient for example big datasets. To improve functionality we have developed quickchartR (pronounce quickcharter), which enables using R language to create Quickchart objects.
+In quickchartR You can create every type of chart from Quickchart.io except Sparklines ( [See why quickchartR does not support Sparklines](#why-quickchartr-does-not-support-sparklines)):</p>
+
+  * Bar Graph - <em>type 'bar'</em>
+  * Line Graph - <em>type 'line'</em>
+  * Radar Chart - <em>type 'radar</em>
+  * Pie Chart - <em>type 'pie'</em>
+  * Doughnut Chart - <em>type 'doughnut</em>
+  * Scatter Plot - <em>type 'scatter'</em>
+  * Bubbel Chart - <em>type 'bubble'</em>
+
+
+&nbsp;
+
+&nbsp;
+
+
+# How to use quickchartR?
+
+***********************
+
+## presumptions
+
+In the following examples we are working with widely known data from Iris and mtcars datasets which are built in R. 
+
+
+### Pie chart
+
+We'd like to create a pie chart as simple as possible. This chart will show number of cars with a specific number of cylinders in the database. In order to do so, we need to prepare data:
+
+
+```{r piehcart data, warning = FALSE}
+inputDataPie = data.frame(
+  mtcars %>% count(cyl),
+  myLabelColumn = rep(c("number od cylinders"),3)
+)
+inputDataPie
+```
+
+Then we can use <em> quickchartR() </em> method to plot a chart:
+
+```{r piehcart, warning = FALSE, eval=FALSE}
+browseURL(
+  quickchartR(
+    types = "pie",            # type of a chart
+    inputData = inputDataPie, # name of dataset (e.g. dataframe)
+    xData = cyl,              # X-axis data
+    yData = n,                # Y-axis data
+    labels = myLabelColumn    #labels
+  )
+)
+```
+
+Our result:
+
+<img src="../docs/img/pie.png" width="95%">
+
+
+### Doughnut chart
+
+A doughnut chart requires the same data. Let's append some details, for example a title for the chart.
+
+```{r doughnut data, warning = FALSE}
+myOptions = list(
+  title = list(                        # list of title's options
+    display = TRUE,                    # visibility
+    text = "My first quickchart",      #text
+    fontSize = 32 
+  ),
+  legend = list(position = "bottom"))  #possible values: botton, top, left, right, false
+```
+
+As You see type <em>myOptions</em> is list which contains another lists. The result is shown below:
+
+```{r doughnut chart, warning = FALSE, eval=FALSE}
+browseURL(
+  quickchartR(
+    types = "doughnut",
+    inputData = inputDataPie,
+    xData = cyl,
+    yData = n,
+    labels = myLabelColumn,
+    options = myOptions,
+    base64 = F
+  )
+)
+```
+
+<img src="../docs/img/don.png" width="95%">
+
+
+Please note we add "base64" argument as FALSE which causes that a hyperlink to the chart is not encoded.
+
+### Bar chart
+
+Another useful type of chart is barchart. Ours will show difference of mean sepal length for three iris species from iris dataset. 
+To achieve that we need to prepare data:
+
+```{r load data, warning = FALSE}
+data <- iris
+head(data)
+```
+
+```{r barchart data, warning = FALSE}
+mean_setosa_sepal_length<-mean(data[data$Species=="setosa",1])
+mean_virginica_sepal_length<-mean(data[data$Species=="virginica",1])
+mean_versicolor_sepal_length<-mean(data[data$Species=="versicolor",1])
+mean_vector<-c(mean_setosa_sepal_length,mean_virginica_sepal_length,mean_versicolor_sepal_length)
+mean_vector
+inputData2 = data.frame(
+  myXColumn =c("setosa","virginica","versicolor"),
+  myYColumn = mean_vector,
+  myLabelColumn = rep("Iris", 3)
+)
+
+myOptionsb = list(
+  title = list(                       
+    display = TRUE,               
+    text = "Mean of sepal length for different types of iris", 
+    fontSize = 32 
+  ),
+  legend = list(position = "false"))
+```
+
+
+
+```{r barchart, warning = FALSE, eval =FALSE}
+browseURL(
+  quickchartR(
+    types = "bar",
+    inputData = inputData2,
+    xData = myXColumn,
+    yData = myYColumn,
+    labels = myLabelColumn,
+    options=myOptionsb
+  )
+)
+```
+<img src="../docs/img/bar.png" width="95%">
+
+### Radar chart
+
+**Note: There are some issues regarding using radarchart in Google Chrome.**
+
+For setosa species we will show all mean dimensions for petals and sepals. In addition we add our own color pallete.
+
+```{r radarchart data, warning = FALSE}
+dt<-data[data$Species=='setosa',] %>% group_by(Species) %>% summarise_at(1:4, mean) #dplyr magic here
+
+inputData3 = data.frame(
+  myXColumn =c("Sepal Length","Sepal width","Petal Length","Petal width"),
+  myYColumn = as.vector(t(dt[,-1])),
+  # = c(1,2,3,4),
+  myLabelColumn = c(rep("setosa", 4))
+)
+
+myOptionsr = list(
+  title = list(                       
+    display = TRUE,               
+    text = "Means of sepal and petal dimensions of iris", 
+    fontSize = 32 
+  ),
+  legend = list(position = "bottom"))
+```
+
+```{r radarchart, warning = FALSE, eval =FALSE}
+detailedOptions = list(list(fill='true'))
+browseURL(
+  quickchartR(
+    types = "radar",
+    inputData = inputData3,
+    xData = myXColumn,
+    yData = myYColumn,
+    #rData = myRColumn,
+    labels = myLabelColumn,
+    options=myOptionsr,
+    detailedOptions=detailedOptions,
+    colors = c("blue","red"),
+    base64 = F
+  )
+)
+```
+
+<img src="../docs/img/radar.png" width="95%">
+
+Please note that a radarchart could be misleading if you use incomparable types of data (for example a horse power for an engine and dimensions of a car.)
+
+
+### Scatter plot
+
+We can also create a basic scatter plot:
+
+```{r scatter data, warning = FALSE}
+inputDataScatter = data.frame(
+  myYColumn =mtcars$hp,
+  myXColumn = mtcars$qsec,
+  myLabelColumn = rep(c(" "),length(mtcars[,1]))
+)
+
+myOptionss = list(
+  title = list(                       
+    display = TRUE,               
+    text = "Horse power versus 1/4 mile time", 
+    fontSize = 32 
+  ),
+  legend = list(position = "false"))
+```
+
+```{r scatter chart, warning = FALSE, eval=FALSE}
+browseURL(
+  quickchartR(
+    types = "scatter",
+    inputData = inputDataScatter,
+    xData = myXColumn,
+    yData = myYColumn,
+    rData = myRColumn,
+    labels = myLabelColumn,
+    options=myOptionss,
+    base64 = F
+  )
+)
+
+```
+
+<img src="../docs/img/scatter.png" width="95%">
+
+
+
+### Bubble plot
+
+
+A bubble plot is a variant of a scatter plot, but it contains additional information represented by a size of the bubble.
+
+```{r bubble data, warning = FALSE}
+inputDataBubble = data.frame(
+  myYColumn =mtcars$hp,
+  myXColumn = mtcars$qsec,
+  myRColumn = mtcars$mpg,
+  myLabelColumn = rep(c(" "),length(mtcars[,1]))
+)
+
+myOptionsbb = list(
+  title = list(                       
+    display = TRUE,               
+    text = "Horse power versus 1/4 mile time versus mile per gallon distance", 
+    fontSize = 22 
+  ),
+  legend = list(position = "false"))
+```
+
+```{r bubble chart, warning = FALSE, eval=FALSE}
+browseURL(
+  quickchartR(
+    types = "bubble",
+    inputData = inputDataBubble,
+    xData = myXColumn,
+    yData = myYColumn,
+    rData = myRColumn,
+    labels = myLabelColumn,
+    options = myOptionsbb,
+    base64=F
+  )
+)
+
+
+```
+
+<img src="../docs/img/bubble.png" width="95%">
+
+### Mixed charts
+
+QuickchartR allows also to present different charts in one space, called a <em>mixed</em> chart. Data are grouped by their labels and a <em>types</em> argument becomes a vector of strings.
+
+
+
+```{r mixed data, warning = FALSE}
+types = c("bar", "line", "bar")
+detailedOptions = list(list(), list(fill = "false"), list())
+inputDataMix = data.frame(
+  myXColumn = rep(1:6, 3),
+  myYColumn = sample(1:18, 18),
+  myLabelColumn = rep(letters[1:3], 6)
+)
+```
+
+
+```{r mixed, warning = FALSE, eval=FALSE}
+browseURL(
+  quickchartR(
+    types = types,
+    inputData = inputDataMix,
+    xData = myXColumn,
+    yData = myYColumn,
+    labels = myLabelColumn,
+    detailedOptions = detailedOptions,
+    base64 = F
+  )
+)
+```
+
+<img src="../docs/img/mixed.png" width="95%">
+
+
+&nbsp;
+
+&nbsp;
+
+# FAQ
+
+### why quickchartR does not support sparklines
+
+In its assumption of "simplicity" which ignores labels, axis etc. sparkline chartit
+is considered a terrible data visualization practice.
+Even though it is usually used e.g. inside a table to minimize the eye-candy and with
+a common axis with other charts, implementing it here would cause someone who is not
+familiar with advanced data visualization and good practices to make a mistake (e.g. by
+using it regardless of its true purpose).
+It is assumed that professional data scientists do NOT use Quickcharts for their
+charts because they have their own advanced tools for it.
+Therefore, to somehow control and help the newbie data visualizators, sparkline chart
+is NOT included in quickchartR.

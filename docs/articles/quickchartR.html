@@ -90,8 +90,8 @@
             
             <h4 class="date">2019-11-11</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/LuPaRaMySa/quickchartR/blob/master/vignettes/quickchartR-vignette.Rmd"><code>vignettes/quickchartR-vignette.Rmd</code></a></small>
-      <div class="hidden name"><code>quickchartR-vignette.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/LuPaRaMySa/quickchartR/blob/master/vignettes/quickchartR.Rmd"><code>vignettes/quickchartR.Rmd</code></a></small>
+      <div class="hidden name"><code>quickchartR.Rmd</code></div>
 
     </div>
 
@@ -125,14 +125,15 @@ Quickchart.io is a powerful application which provides fine and fast charts of d
 <div id="how-to-use-quickchartr" class="section level1">
 <h1 class="hasAnchor">
 <a href="#how-to-use-quickchartr" class="anchor"></a>How to use quickchartR?</h1>
+<hr>
 <div id="presumptions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#presumptions" class="anchor"></a>presumptions</h2>
 <p>In the following examples we are working with widely known data from Iris and mtcars datasets which are built in R.</p>
-<div id="piechart" class="section level3">
+<div id="pie-chart" class="section level3">
 <h3 class="hasAnchor">
-<a href="#piechart" class="anchor"></a>Piechart</h3>
-<p>Let assume we’d like to create a basic piechart as simple as possible. This chart will show number of cars with a specific number of cylinders in the database. To achieve that we need to prepare data:</p>
+<a href="#pie-chart" class="anchor"></a>Pie chart</h3>
+<p>We’d like to create a pie chart as simple as possible. This chart will show number of cars with a specific number of cylinders in the database. In order to do so, we need to prepare data:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>inputDataPie =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</span>
 <span id="cb1-2"><a href="#cb1-2"></a>  mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(cyl),</span>
 <span id="cb1-3"><a href="#cb1-3"></a>  <span class="dt">myLabelColumn =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"number od cylinders"</span>),<span class="dv">3</span>)</span>
@@ -155,9 +156,9 @@ Quickchart.io is a powerful application which provides fine and fast charts of d
 <p>Our result:</p>
 <p><img src="../docs/img/pie.png" width="95%"></p>
 </div>
-<div id="doughnutchart" class="section level3">
+<div id="doughnut-chart" class="section level3">
 <h3 class="hasAnchor">
-<a href="#doughnutchart" class="anchor"></a>Doughnutchart</h3>
+<a href="#doughnut-chart" class="anchor"></a>Doughnut chart</h3>
 <p>A doughnut chart requires the same data. Let’s append some details, for example a title for the chart.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>myOptions =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
 <span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(                        <span class="co"># list of title's options</span></span>
@@ -166,7 +167,7 @@ Quickchart.io is a powerful application which provides fine and fast charts of d
 <span id="cb3-5"><a href="#cb3-5"></a>    <span class="dt">fontSize =</span> <span class="dv">32</span> </span>
 <span id="cb3-6"><a href="#cb3-6"></a>  ),</span>
 <span id="cb3-7"><a href="#cb3-7"></a>  <span class="dt">legend =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">position =</span> <span class="st">"bottom"</span>))  <span class="co">#possible values: botton, top, left, right, false</span></span></code></pre></div>
-<p>As You see type of <em>myOptions</em> is list which contains another lists. The result is shown below:</p>
+<p>As You see type <em>myOptions</em> is list which contains another lists. The result is shown below:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/browseURL.html">browseURL</a></span>(</span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="kw"><a href="../reference/quickchartR.html">quickchartR</a></span>(</span>
 <span id="cb4-3"><a href="#cb4-3"></a>    <span class="dt">types =</span> <span class="st">"doughnut"</span>,</span>
@@ -179,11 +180,11 @@ Quickchart.io is a powerful application which provides fine and fast charts of d
 <span id="cb4-10"><a href="#cb4-10"></a>  )</span>
 <span id="cb4-11"><a href="#cb4-11"></a>)</span></code></pre></div>
 <p><img src="../docs/img/don.png" width="95%"></p>
-<p>Please note we add “base64” argument as FALSE which cause that a hyperlink to the chart is not encoded.</p>
+<p>Please note we add “base64” argument as FALSE which causes that a hyperlink to the chart is not encoded.</p>
 </div>
-<div id="barchart" class="section level3">
+<div id="bar-chart" class="section level3">
 <h3 class="hasAnchor">
-<a href="#barchart" class="anchor"></a>Barchart</h3>
+<a href="#bar-chart" class="anchor"></a>Bar chart</h3>
 <p>Another useful type of chart is barchart. Ours will show difference of mean sepal length for three iris species from iris dataset. To achieve that we need to prepare data:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>data &lt;-<span class="st"> </span>iris</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(data)</span>
@@ -209,7 +210,7 @@ Quickchart.io is a powerful application which provides fine and fast charts of d
 <span id="cb6-13"><a href="#cb6-13"></a>myOptionsb =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(</span>
 <span id="cb6-14"><a href="#cb6-14"></a>  <span class="dt">title =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(                       </span>
 <span id="cb6-15"><a href="#cb6-15"></a>    <span class="dt">display =</span> <span class="ot">TRUE</span>,               </span>
-<span id="cb6-16"><a href="#cb6-16"></a>    <span class="dt">text =</span> <span class="st">"Mean of sepal length different types of iris"</span>, </span>
+<span id="cb6-16"><a href="#cb6-16"></a>    <span class="dt">text =</span> <span class="st">"Mean of sepal length for different types of iris"</span>, </span>
 <span id="cb6-17"><a href="#cb6-17"></a>    <span class="dt">fontSize =</span> <span class="dv">32</span> </span>
 <span id="cb6-18"><a href="#cb6-18"></a>  ),</span>
 <span id="cb6-19"><a href="#cb6-19"></a>  <span class="dt">legend =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">position =</span> <span class="st">"false"</span>))</span></code></pre></div>
@@ -225,11 +226,11 @@ Quickchart.io is a powerful application which provides fine and fast charts of d
 <span id="cb7-10"><a href="#cb7-10"></a>)</span></code></pre></div>
 <p><img src="../docs/img/bar.png" width="95%"></p>
 </div>
-<div id="radarchart" class="section level3">
+<div id="radar-chart" class="section level3">
 <h3 class="hasAnchor">
-<a href="#radarchart" class="anchor"></a>Radarchart</h3>
+<a href="#radar-chart" class="anchor"></a>Radar chart</h3>
 <p><strong>Note: There are some issues regarding using radarchart in Google Chrome.</strong></p>
-<p>For a setosa species we will show all mean dimensions for petals and sepals. In addition we add an own color pallete.</p>
+<p>For setosa species we will show all mean dimensions for petals and sepals. In addition we add our own color pallete.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>dt&lt;-data[data<span class="op">$</span>Species<span class="op">==</span><span class="st">'setosa'</span>,] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(Species) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise_at</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, mean) <span class="co">#dplyr magic here</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a></span>
 <span id="cb8-3"><a href="#cb8-3"></a>inputData3 =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</span>
@@ -262,7 +263,7 @@ Quickchart.io is a powerful application which provides fine and fast charts of d
 <span id="cb9-14"><a href="#cb9-14"></a>  )</span>
 <span id="cb9-15"><a href="#cb9-15"></a>)</span></code></pre></div>
 <p><img src="../docs/img/radar.png" width="95%"></p>
-<p>Please note that a radarchart could be misleading if You use incomparable types of data (for example a horse power for an engine and dimensions of a car.)</p>
+<p>Please note that a radarchart could be misleading if you use incomparable types of data (for example a horse power for an engine and dimensions of a car.)</p>
 </div>
 <div id="scatter-plot" class="section level3">
 <h3 class="hasAnchor">
@@ -298,7 +299,7 @@ Quickchart.io is a powerful application which provides fine and fast charts of d
 <div id="bubble-plot" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bubble-plot" class="anchor"></a>Bubble plot</h3>
-<p>A bubble plot is a variant of a scatter plot but it contains additional information represents as size of the bubble.</p>
+<p>A bubble plot is a variant of a scatter plot, but it contains additional information represented by a size of the bubble.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>inputDataBubble =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</span>
 <span id="cb12-2"><a href="#cb12-2"></a>  <span class="dt">myYColumn =</span>mtcars<span class="op">$</span>hp,</span>
 <span id="cb12-3"><a href="#cb12-3"></a>  <span class="dt">myXColumn =</span> mtcars<span class="op">$</span>qsec,</span>
@@ -330,9 +331,9 @@ Quickchart.io is a powerful application which provides fine and fast charts of d
 <div id="mixed-charts" class="section level3">
 <h3 class="hasAnchor">
 <a href="#mixed-charts" class="anchor"></a>Mixed charts</h3>
-<p>QuickchartR also allow to create a <em>mixed</em> chart which basically means different charts in one space. Data are group by its labels and a <em>types</em> argument is become a vector of strings.</p>
+<p>QuickchartR allows also to present different charts in one space, called a <em>mixed</em> chart. Data are grouped by their labels and a <em>types</em> argument becomes a vector of strings.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>types =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"bar"</span>, <span class="st">"line"</span>, <span class="st">"bar"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2"></a>detailedOptions =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">fill =</span> <span class="st">"true"</span>), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>())</span>
+<span id="cb14-2"><a href="#cb14-2"></a>detailedOptions =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">fill =</span> <span class="st">"false"</span>), <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>())</span>
 <span id="cb14-3"><a href="#cb14-3"></a>inputDataMix =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(</span>
 <span id="cb14-4"><a href="#cb14-4"></a>  <span class="dt">myXColumn =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dv">3</span>),</span>
 <span id="cb14-5"><a href="#cb14-5"></a>  <span class="dt">myYColumn =</span> <span class="kw"><a href="https://rdrr.io/r/base/sample.html">sample</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">18</span>, <span class="dv">18</span>),</span>
