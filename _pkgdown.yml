@@ -1,3 +1,5 @@
 destination: docs
 output:
   github_document
+
+url: http://pkgdown.r-lib.org
