@@ -46,6 +46,48 @@ test_that("createLink returns correct output encoded in base64", {
   expect_equal(createLink('Jacek',T), "https://quickchart.io/chart?&encoding=base64&c=SmFjZWs=")
 })
 
+
+test_that("quickchartR returns correct link not encoded in base64", {
+  types = c("line", "bubble")
+  inputData = data.frame(
+    myXColumn = rep(1:3, 2),
+    myYColumn = 2 * 1:6,
+    yRColumn = 1:6,
+    myLabelColumn = rep(letters[1:2], 3)
+  )
+
+  colors = c('blue', 'red')
+  options = list(
+    title = list(
+      display = T,
+      text = "TEST TITLE",
+      fontSize = 32
+    ),
+    legend = list(position = "bottom")
+  )
+
+
+  url <- quickchartR(
+    types = types,
+    inputData = inputData,
+    xData = myXColumn,
+    yData = myYColumn,
+    rData = myRColumn,
+    labels = myLabelColumn,
+    colors = colors,
+    options = options,
+    base64 = F
+  )
+
+  expect_true(str_detect(url, "line"))
+  expect_true(str_detect(url, "bubble"))
+  expect_true(str_detect(url, "blue"))
+  expect_true(str_detect(url, "red"))
+  expect_true(str_detect(url, "TEST"))
+  expect_true(str_detect(url, "TITLE"))
+  expect_true(str_detect(url, "bottom"))
+})
+
 test_that("output type of inputDataToNamedList is list", {
   inputData <- data.frame("x" = 1:10, "y" = 1:10, "r" = 1:10)
   expect_type(inputDataToNamedList(inputData), "list")
