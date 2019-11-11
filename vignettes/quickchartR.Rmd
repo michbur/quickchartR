@@ -84,7 +84,7 @@ browseURL(
 
 Our result:
 
-<img src="../docs/img/pie.png" width="95%">
+<img src="img/pie.png" width="95%">
 
 
 ### Doughnut chart
@@ -117,7 +117,7 @@ browseURL(
 )
 ```
 
-<img src="../docs/img/don.png" width="95%">
+<img src="img/don.png" width="95%">
 
 
 Please note we add "base64" argument as FALSE which causes that a hyperlink to the chart is not encoded.
@@ -167,7 +167,7 @@ browseURL(
   )
 )
 ```
-<img src="../docs/img/bar.png" width="95%">
+<img src="img/bar.png" width="95%">
 
 ### Radar chart
 
@@ -212,7 +212,7 @@ browseURL(
 )
 ```
 
-<img src="../docs/img/radar.png" width="95%">
+<img src="img/radar.png" width="95%">
 
 Please note that a radarchart could be misleading if you use incomparable types of data (for example a horse power for an engine and dimensions of a car.)
 
@@ -253,7 +253,7 @@ browseURL(
 
 ```
 
-<img src="../docs/img/scatter.png" width="95%">
+<img src="img/scatter.png" width="95%">
 
 
 
@@ -296,7 +296,7 @@ browseURL(
 
 ```
 
-<img src="../docs/img/bubble.png" width="95%">
+<img src="img/bubble.png" width="95%">
 
 ### Mixed charts
 
@@ -329,7 +329,7 @@ browseURL(
 )
 ```
 
-<img src="../docs/img/mixed.png" width="95%">
+<img src="img/mixed.png" width="95%">
 
 
 &nbsp;
