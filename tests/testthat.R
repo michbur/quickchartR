@@ -1,5 +1,6 @@
 library(testthat)
 library(quickchartR)
+library(stringr)
 
 test_that("checkTypes function returns error", {
   expect_error(checkTypes("wrong type"))
