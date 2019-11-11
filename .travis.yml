@@ -3,6 +3,8 @@
 warnings_are_errors: false
 
 language: R
+r_packages:
+    - dplyr
 cache: packages
 after_success:
     - Rscript -e 'covr::codecov()'

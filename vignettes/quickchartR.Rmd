@@ -20,7 +20,8 @@ knitr::opts_chunk$set(
 
 ```{r setup, message=FALSE, echo=FALSE, warning=FALSE}
 require(quickchartR)
-library(dplyr)
+if (!require(dplyr))
+    install.packages("rjson", repos = "http://cran.us.r-project.org")
 ```
 
 
