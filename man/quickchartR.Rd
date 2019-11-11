@@ -2,12 +2,39 @@
 % Please edit documentation in R/quickchartR.R
 \name{quickchartR}
 \alias{quickchartR}
-\title{main function}
+\title{Main function}
 \usage{
 quickchartR(types, inputData, xData, yData, labels, rData = NULL,
-  colors = NULL, options = NULL, additionalGraphsData = NULL,
+  colors = NULL, options = NULL, detailedOptions = NULL,
   base64 = T)
 }
+\arguments{
+\item{types}{list of types of charts}
+
+\item{inputData}{data.frame with columns "x","y","r"}
+
+\item{xData}{data which be used to plot x axis (column of inputData)}
+
+\item{yData}{data which be used to plot y axis (column of inputData)}
+
+\item{labels}{list name of labels}
+
+\item{rData}{data which be used to plot r axis, e.g. for bubble charts (column of inputData)}
+
+\item{colors}{list of background colors which be used}
+
+\item{options}{list of options to create Json}
+
+\item{detailedOptions}{list of lists of additional options; only "fill" for line graphs is handled}
+
+\item{base64}{boolean describing if the url should or should not be encoded in base64}
+}
 \description{
-main function
+Main function
+}
+\details{
+Creates a link to quickchart with chart/charts based on inputData.
+}
+\author{
+Jacek Myna, Aleksandra Łuczak, Agata Pałdyna, Tomasz Radzikowski, Jan Sawicki
 }

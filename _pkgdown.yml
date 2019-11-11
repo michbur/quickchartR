@@ -1,0 +1,3 @@
+destination: docs
+output:
+  github_document
